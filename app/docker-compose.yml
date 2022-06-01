@@ -2,7 +2,7 @@ version: '3.9'
 services:
   frontend:
     build: ./frontend
-    # container_name: app_frontend
+    container_name: app_frontend
     ports:
       - 3000:3000
     depends_on:
@@ -16,7 +16,7 @@ services:
       retries: 5
   backend:
     build: ./backend
-    # container_app: app_backend
+    container_name: app_backend
     ports:
       - 3001:3001
     depends_on:

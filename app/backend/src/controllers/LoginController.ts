@@ -4,8 +4,8 @@ import { readFileSync } from 'fs';
 import LoginService from '../services/LoginService';
 import User from '../database/models/UserModel';
 
-const secret = '../jwt.evaluation.key';
-const SECRET = readFileSync(secret, 'utf-8');
+const secret = 'jwt.evaluation.key';
+const SECRET = readFileSync(secret, 'utf8');
 
 export default class LoginController {
   loginService: LoginService;
@@ -17,6 +17,16 @@ export default class LoginController {
   login = async (req: Request, res: Response) => {
     const result = await this.loginService.login(req.body);
     res.status(200).json(result);
+  };
+
+  loginEmailRegex = async (req: Request, res: Response) => {
+    const { email } = req.body;
+    const regexEmail = /\S+@\S+\.\S+/;
+    regexEmail.test(email);
+
+    if (!regexEmail) {
+      return res.status(400).json({ message: 'Incorrect email or password' });
+    }
   };
 
   loginValidate = async (req: Request, res: Response) => {

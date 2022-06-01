@@ -2,7 +2,7 @@ import { DataTypes, Model } from 'sequelize';
 import db from '.';
 // import Match from './Match';
 
-export default class Team extends Model {
+class Team extends Model {
   public id: number;
 
   public teamName: string;
@@ -35,4 +35,4 @@ Team.hasMany(Match, {
 });
 */
 
-// export default Teams;
+export default Team;

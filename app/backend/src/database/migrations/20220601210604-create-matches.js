@@ -1,5 +1,3 @@
-// const sequelize = require("sequelize");
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable("matches", {
@@ -13,7 +11,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         field: "home_team",
-        primaryKey: true,
+        // primaryKey: true,
         references: {
           model: "teams",
           key: "id",

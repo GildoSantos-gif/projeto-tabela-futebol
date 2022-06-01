@@ -13,10 +13,10 @@ class App {
     this.routes();
   }
 
-   public routes() {
+  public routes() {
     this.app.use('/login', loginRoute);
 
-    this.app.get('');
+    // this.app.use('/validate', loginRoute);
   }
 
   private config():void {
@@ -28,8 +28,9 @@ class App {
     };
 
     this.app.use(accessControl);
-    this.app.use(express.json());
+    // this.app.use(express.json()); faz mesma coisa do que bodyParser.
     this.app.use(bodyParser.json());
+    // this.app.use('/login', loginRoute);
 
     // ...
   }

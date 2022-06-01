@@ -2,7 +2,7 @@ import { DataTypes, Model } from 'sequelize';
 import db from '.';
 import Team from './TeamModel';
 
-export default class Match extends Model {
+class Match extends Model {
   public id: number;
 
   public homeTeam: number;
@@ -54,8 +54,6 @@ Match.init(
 );
 
 Match.belongsTo(Team, { foreignKey: 'homeTeam', as: 'teamHome' });
-Match.belongsTo(Team, { foreignKey: 'awayTeam', as: 'temAway' });
-Team.hasMany(Match, { foreignKey: 'id', as: 'teamHome' });
-Team.hasMany(Match, { foreignKey: 'id', as: 'teamAway' });
+Match.belongsTo(Team, { foreignKey: 'awayTeam', as: 'teamAway' });
 
-// export default Match;
+export default Match;
