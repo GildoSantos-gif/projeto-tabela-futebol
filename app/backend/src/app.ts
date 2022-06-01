@@ -1,4 +1,6 @@
 import * as express from 'express';
+import bodyParser = require('body-parser');
+import loginRoute from './routes';
 
 class App {
   public app: express.Express;
@@ -6,8 +8,15 @@ class App {
 
   constructor() {
     // ...
+    this.app = express();
     this.config();
-    // ...
+    this.routes();
+  }
+
+   public routes() {
+    this.app.use('/login', loginRoute);
+
+    this.app.get('');
   }
 
   private config():void {
@@ -19,12 +28,15 @@ class App {
     };
 
     this.app.use(accessControl);
+    this.app.use(express.json());
+    this.app.use(bodyParser.json());
+
     // ...
   }
 
   // ...
   public start(PORT: string | number):void {
-    // ...
+    this.app.listen(PORT, () => console.log(`ON in the port ${PORT}`));
   }
 }
 
