@@ -1,21 +1,19 @@
-/*
 import { Request, Response } from 'express';
-import TeamsService from '../services/LoginService';
-import Team from '../database/models/TeamModel';
+import TeamService from '../services/Teamservice';
 
 export default class TeamsController {
-  teamsService: TeamsService;
+  teamService: TeamService;
 
   constructor() {
-    this.loginService = new LoginService();
+    this.teamService = new TeamService();
   }
 
   getAll = async (req: Request, res: Response) => {
     try {
-      const result = await this.TeamService.getAll();
+      const result = await this.teamService.getAll();
+      res.status(200).json(result);
     } catch (err) {
-        return res.status(500).json({ message: 'internal server error' });
+      return res.status(500).json({ message: 'internal server error' });
     }
-    res.status(200).json(result);
   };
-  */
+}

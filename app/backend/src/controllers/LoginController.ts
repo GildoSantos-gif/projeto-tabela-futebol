@@ -46,7 +46,6 @@ export default class LoginController {
     }
     const { data } = <jwt.JwtPayload> jwt.decode(token);
     const result = await User.findOne({ where: { email: data } });
-    // console.log(result, 'result-controller');
     return res.status(200).json(result?.role);
   };
 }
