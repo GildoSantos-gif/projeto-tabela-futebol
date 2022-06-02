@@ -1,6 +1,6 @@
 import * as express from 'express';
 import bodyParser = require('body-parser');
-import loginRoute from './routes';
+import loginRouter from './routes/loginRoute';
 
 class App {
   public app: express.Express;
@@ -14,8 +14,7 @@ class App {
   }
 
   public routes() {
-    this.app.use('/', loginRoute);
-    this.app.use('/validate', loginRoute);
+    this.app.use('/login', loginRouter);
   }
 
   private config():void {

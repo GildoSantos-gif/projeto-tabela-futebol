@@ -35,7 +35,7 @@ export default class LoginController {
 
   loginValidate = async (req: Request, res: Response) => {
     const token = req.headers.authorization;
-    const { email } = await req.body;
+    // const { email } = await req.body;
     if (!token) {
       return res.status(401).json({ message: 'Token is required' });
     }
@@ -44,8 +44,9 @@ export default class LoginController {
     } catch (err) {
       return res.status(401).json({ message: 'expired or invalid token' });
     }
-    const result = await User.findOne({ where: { email } });
-    console.log(result, 'result-controller');
+    const { data } = <jwt.JwtPayload> jwt.decode(token);
+    const result = await User.findOne({ where: { email: data } });
+    // console.log(result, 'result-controller');
     return res.status(200).json(result?.role);
   };
 }
