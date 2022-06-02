@@ -5,7 +5,7 @@ import validLogin from '../validatesAll/validLogin';
 const router = express.Router();
 const controller = new LoginController();
 
-router.post('/', controller.loginEmailRegex, validLogin, controller.login);
+router.post('/login', controller.loginEmailRegex, validLogin, controller.login);
 router.get('/validate', controller.loginValidate);
 
 export default router;

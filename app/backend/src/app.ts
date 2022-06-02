@@ -14,9 +14,8 @@ class App {
   }
 
   public routes() {
-    this.app.use('/login', loginRoute);
-
-    // this.app.use('/validate', loginRoute);
+    this.app.use('/', loginRoute);
+    this.app.use('/validate', loginRoute);
   }
 
   private config():void {

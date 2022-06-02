@@ -17,19 +17,26 @@ export default class LoginService {
 
   login = async (data: ILogin) => {
     const { email, password } = data;
+    console.log(data, 'req.body login-service');
     const getUserByEmail: User | null = await User.findOne({ where: { email } });
+
     if (!getUserByEmail) {
       throw Error('Incorrect email or password');
     }
+    /*
     // const { password } = getUserByEmail;
     // const compare = bcrypt.compareSync(get.password, data.password);
-    const bcryptCompare = compare(password, getUserByEmail.password);
-
+    */
+    // const bcryptCompare = compare(password, getUserByEmail.password);
+    compare(password, getUserByEmail.password);
+    /*
     if (!bcryptCompare) {
       throw Error('Incorrect email or password');
     }
+    */
     const token = jwtGenerator(email);
     // console.log()
-    return { user: getUserByEmail, token };
+    const { id, username, role } = getUserByEmail;
+    return { user: { id, username, role, email }, token };
   };
 }
