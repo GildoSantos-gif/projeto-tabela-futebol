@@ -26,7 +26,7 @@ export default class LoginController {
     next();
   };
 
-  login = async (req: Request, res: Response) => {
+  public login = async (req: Request, res: Response) => {
     console.log(req.body, 'req.body login-controller');
     const result = await this.loginService.login(req.body);
     console.log(result, 'result1');
@@ -36,7 +36,7 @@ export default class LoginController {
     res.status(200).json(result);
   };
 
-  loginValidate = async (req: Request, res: Response) => {
+  public loginValidate = async (req: Request, res: Response) => {
     const token = req.headers.authorization;
     // const { email } = await req.body;
     if (!token) {
