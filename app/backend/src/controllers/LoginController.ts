@@ -14,13 +14,6 @@ export default class LoginController {
     this.loginService = new LoginService();
   }
 
-  login = async (req: Request, res: Response) => {
-    console.log(req.body, 'req.body login-controller');
-    const result = await this.loginService.login(req.body);
-    console.log(result, 'result1');
-    res.status(200).json(result);
-  };
-
   loginEmailRegex = async (req: Request, res: Response, next: NextFunction) => {
     const { email } = await req.body;
     const regexEmail = /\S+@\S+\.\S+/;
@@ -28,9 +21,19 @@ export default class LoginController {
     console.log(regexEmail, 'result-regex');
 
     if (!regexEmail) {
-      return res.status(400).json({ message: 'Incorrect email or password' });
+      return res.status(401).json({ message: 'Incorrect email or password' });
     }
     next();
+  };
+
+  login = async (req: Request, res: Response) => {
+    console.log(req.body, 'req.body login-controller');
+    const result = await this.loginService.login(req.body);
+    console.log(result, 'result1');
+    if (!result) {
+      return res.status(401).json({ message: 'Incorrect email or password' });
+    }
+    res.status(200).json(result);
   };
 
   loginValidate = async (req: Request, res: Response) => {

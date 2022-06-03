@@ -1,5 +1,6 @@
+import * as bcrypt from 'bcryptjs';
 import User from '../database/models/UserModel';
-import compare from '../helpers/Bcrypt';
+// import compare from '../helpers/Bcrypt';
 // const jwt = require('jsonwebtoken');
 import jwtGenerator from '../helpers/jwtGenerator';
 
@@ -18,25 +19,28 @@ export default class LoginService {
   login = async (data: ILogin) => {
     const { email, password } = data;
     console.log(data, 'req.body login-service');
-    const getUserByEmail: User | null = await User.findOne({ where: { email } });
+    const getUserByEmail = await User.findOne({ where: { email } });
+    console.log(getUserByEmail, 'getUserByEmail log');
 
     if (!getUserByEmail) {
-      throw Error('Incorrect email or password');
+      // throw Error('Incorrect email or password');
+      return undefined;
     }
     /*
     // const { password } = getUserByEmail;
     // const compare = bcrypt.compareSync(get.password, data.password);
     */
-    // const bcryptCompare = compare(password, getUserByEmail.password);
-    compare(password, getUserByEmail.password);
-    /*
+    const bcryptCompare = bcrypt.compareSync(password, getUserByEmail.password);
+    // compare(password, getUserByEmail.password);
+
     if (!bcryptCompare) {
-      throw Error('Incorrect email or password');
+      return undefined;
     }
-    */
+
     const token = jwtGenerator(email);
-    // console.log()
+    // console.log(token)
     const { id, username, role } = getUserByEmail;
+    console.log(getUserByEmail, 'log result final');
     return { user: { id, username, role, email }, token };
   };
 }

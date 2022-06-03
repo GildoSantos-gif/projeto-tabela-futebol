@@ -6,6 +6,6 @@ const controller = new TeamController();
 
 teamRouter.get('/', controller.getAll);
 
-// teamRouter.get('/validate', controller.loginValidate);
+teamRouter.get('/:id', controller.getbyId);
 
 export default teamRouter;

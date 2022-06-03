@@ -9,13 +9,13 @@ const validLogin = async (req: Request, res: Response, next: NextFunction) => {
   if (!email || !password) {
     return res.status(400).json(mensagem2);
   }
+  if (typeof email !== 'string' || typeof password !== 'string') {
+    return res.status(400).json(mensagem);
+  }
   if (email === '' || password === '') {
     return res.status(400).json(mensagem2);
   }
   if (password.length < 6) {
-    return res.status(400).json(mensagem);
-  }
-  if (typeof email !== 'string' || typeof password !== 'string') {
     return res.status(400).json(mensagem);
   }
 
