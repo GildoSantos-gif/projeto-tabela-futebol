@@ -1,11 +1,12 @@
 import * as express from 'express';
 import LoginController from '../controllers/LoginController';
-// (fiz com classe) import validLogin from '../validatesAll/validLogin';
+import ValidationLogin from '../validatesAll/ValidationLogin';
 
 const loginRouter = express.Router();
 const controller = new LoginController();
+const validationLogin = new ValidationLogin();
 
-loginRouter.post('/', controller.validLogin, controller.login);
+loginRouter.post('/', validationLogin.validLogin, controller.login);
 loginRouter.get('/validate', controller.loginValidate);
 
 export default loginRouter;
