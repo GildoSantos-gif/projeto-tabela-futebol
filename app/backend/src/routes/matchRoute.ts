@@ -6,6 +6,6 @@ const controller = new MatchController();
 
 matchRouter.get('/', controller.getAll);
 
-// MatchRouter.get('/:id', controller.getbyId);
+// matchRouter.get('/inProgress', controller.getbyInProgress);
 
 export default matchRouter;

@@ -7,8 +7,9 @@ export default class MacthService {
     return result;
   };
 
-  getById = async (id: number) => {
-    const result = await Match.findOne({ where: { id } });
+  getByInProgress = async (inProgress: boolean) => {
+    const result = await Match.findAll({ where: { inProgress } });
+    // attributes: Include: [{ model: Team, attributes: { tem_name as: temName }}]
     console.log(result, 'log result-service');
     return result;
   };
