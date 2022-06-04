@@ -2,6 +2,7 @@ import * as express from 'express';
 import bodyParser = require('body-parser');
 import loginRouter from './routes/loginRoute';
 import teamRouter from './routes/teamRoute';
+import matchRouter from './routes/matchRoute';
 
 class App {
   public app: express.Express;
@@ -17,6 +18,7 @@ class App {
   public routes() {
     this.app.use('/login', loginRouter);
     this.app.use('/teams', teamRouter);
+    this.app.use('/matches', matchRouter);
   }
 
   private config():void {
