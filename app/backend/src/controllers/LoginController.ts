@@ -14,14 +14,14 @@ export default class LoginController {
     this.loginService = new LoginService();
   }
 
-  loginEmailRegex = async (req: Request, res: Response, next: NextFunction) => {
+  public loginEmailRegex = async (req: Request, res: Response, next: NextFunction) => {
     const { email } = await req.body;
     const regexEmail = /\S+@\S+\.\S+/;
     regexEmail.test(email);
     console.log(regexEmail, 'result-regex');
-
+    const message = { message: 'Incorrect email' };
     if (!regexEmail) {
-      return res.status(401).json({ message: 'Incorrect email or password' });
+      return res.status(401).json(message);
     }
     next();
   };
@@ -40,15 +40,39 @@ export default class LoginController {
     const token = req.headers.authorization;
     // const { email } = await req.body;
     if (!token) {
-      return res.status(401).json({ message: 'Token is required' });
+      // return res.status(401).json({ message: 'Token is required' });
+      return res.status(401).end;
     }
     try {
       jwt.verify(token, SECRET);
     } catch (err) {
-      return res.status(401).json({ message: 'expired or invalid token' });
+      // return res.status(401).json({ message: 'expired or invalid token' });
+      return res.status(401).end;
     }
     const { data } = <jwt.JwtPayload> jwt.decode(token);
     const result = await User.findOne({ where: { email: data } });
     return res.status(200).json(result?.role);
+  };
+
+  public validLogin = async (req: Request, res: Response, next: NextFunction) => {
+    const { email, password } = req.body;
+    console.log(req.body, 'req.body validLogin');
+    const mensagem = { message: 'Incorrect email or password' };
+    const mensagem2 = { message: 'All fields must be filled' };
+
+    if (!email || !password) {
+      return res.status(400).json(mensagem2);
+    }
+    if (typeof email !== 'string' || typeof password !== 'string') {
+      return res.status(400).json(mensagem);
+    }
+    if (email === '' || password === '') {
+      return res.status(400).json(mensagem2);
+    }
+    if (password.length < 6) {
+      return res.status(400).json(mensagem);
+    }
+
+    next();
   };
 }
