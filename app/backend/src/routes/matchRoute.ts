@@ -1,8 +1,8 @@
 import * as express from 'express';
-import MatchController from '../controllers/MatchesController';
+import MatchesController from '../controllers/MatchesController';
 
 const matchRouter = express.Router();
-const controller = new MatchController();
+const controller = new MatchesController();
 
 matchRouter.get('/', controller.getAll);
 
