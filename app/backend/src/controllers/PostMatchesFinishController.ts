@@ -1,21 +1,20 @@
 import { Request, Response } from 'express';
-import Match from '../database/models/MatchModel';
-// import PostMatchesService from '../services/PostMatchesService';
+import PostMatchesFinishService from '../services/PostMatchFinishService';
 
 export default class PostMatchesFinishController {
-  // postMatchesService: PostMatchesService;
+  postMatchesFinishService: PostMatchesFinishService;
 
-  // constructor() {
-  //  this.postMatchesService = new PostMatchesService();
-  // }
+  constructor() {
+    this.postMatchesFinishService = new PostMatchesFinishService();
+  }
 
   createMatch = async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
-      await Match.update({ inProgress: false }, { where: { id: Number(id) } });
+      await this.postMatchesFinishService.createMatch(Number(id));
 
       // console.log(result);
-      return res.status(200).json({ message: 'Finished' });
+      return res.status(200).send({ message: 'Finished' });
     } catch (e) {
       res.status(500).json({ message: 'internal server error' });
     }
