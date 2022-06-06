@@ -12,12 +12,10 @@ export default class PostMatchesFinishController {
   createMatch = async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
-      const result = await Match.create({ where: { id: Number(id) } });
-      if (!result) {
-        return res.status(401).end;
-      }
-      console.log(result);
-      return res.status(201).json({ message: 'Finished' });
+      await Match.update({ inProgress: false }, { where: { id: Number(id) } });
+
+      // console.log(result);
+      return res.status(200).json({ message: 'Finished' });
     } catch (e) {
       res.status(500).json({ message: 'internal server error' });
     }

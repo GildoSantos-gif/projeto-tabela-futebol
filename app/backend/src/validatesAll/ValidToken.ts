@@ -12,13 +12,14 @@ export default class ValidToken {
     // const { email } = await req.body;
     if (!token) {
       // return res.status(401).json({ message: 'Token is required' });
-      return res.status(401).json({ message: 'unautorized' });
+      // return res.status(401).json({ message: 'unautorized' });
+      return res.status(401).send();
     }
     try {
       jwt.verify(token, SECRET);
     } catch (err) {
       // return res.status(401).json({ message: 'expired or invalid token' });
-      return res.status(401).end;
+      return res.status(401).end();
     }
     // const { data } = <jwt.JwtPayload> jwt.decode(token);
     // const result = await User.findOne({ where: { email: data } });

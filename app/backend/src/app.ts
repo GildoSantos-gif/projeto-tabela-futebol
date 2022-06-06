@@ -4,6 +4,7 @@ import loginRouter from './routes/loginRoute';
 import teamRouter from './routes/teamRoute';
 import matchRouter from './routes/matchRoute';
 import postMatchesRouter from './routes/postMatchesRoute';
+import postMatchesFinishRouter from './routes/postMatchesFinishRoute';
 
 class App {
   public app: express.Express;
@@ -21,6 +22,7 @@ class App {
     this.app.use('/teams', teamRouter);
     this.app.use('/matches', matchRouter);
     this.app.use('/matches', postMatchesRouter);
+    this.app.use('/matches', postMatchesFinishRouter);
   }
 
   private config():void {
