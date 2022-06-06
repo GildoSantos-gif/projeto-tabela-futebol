@@ -1,24 +1,9 @@
-/*
-import MatchModel from '../database/models/MatchModel';
-
-export interface IMatch {
-  homeTeam: number;
-  homeTeamGoals: number;
-  awayTeam: number;
-  awayTeamsGoals: number;
-  inProgress: boolean;
-}
-
-export interface IMatchreturn extends IMatch {
-   id?: number
- }
+import Match from '../database/models/MatchModel';
+import { createMatchType } from '../helpers/matcheType';
 
 export default class PostMatchesService {
-const postMatch = await MatchModel.create({ homeTeam,
-        awayTeam,
-        homeTeamGoals,
-        awayTeamsGoals,
-        inProgress });
-    return createMatch;
+  createMatch = async (data: createMatchType) => {
+    const result = await Match.create(data);
+    return result;
+  };
 }
-*/

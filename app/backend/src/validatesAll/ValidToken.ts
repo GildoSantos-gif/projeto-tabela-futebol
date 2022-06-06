@@ -12,7 +12,7 @@ export default class ValidToken {
     // const { email } = await req.body;
     if (!token) {
       // return res.status(401).json({ message: 'Token is required' });
-      return res.status(401).end;
+      return res.status(401).json({ message: 'unautorized' });
     }
     try {
       jwt.verify(token, SECRET);
