@@ -1,10 +1,7 @@
+/*
+
 import Team from '../database/models/TeamModel';
 import Match from '../database/models/MatchModel';
-
-export interface ITeam {
-  id: number,
-  teamName: string,
-}
 
 export default class MacthService {
   getAll = async (inProgress: number) => {
@@ -21,17 +18,15 @@ export default class MacthService {
       return { resultGetAll, result };
     }
 
-    /*
     const resultGetAll = await Match.findAll({
       include: [{ model: Team, as: 'teamHome', attributes: { exclude: ['id'] } },
         { model: Team, as: 'teamAway', attributes: { exclude: ['id'] } }],
     });
     console.log(resultGetAll, 'result-GetAll');
     return resultGetAll;
-    */
   };
-
-  /*
+   */
+/*
   getByInProgress = async (inProgress: number) => {
     getAllInProgress = async () => {
       const result = await Match.findOne({ where: { inProgress } });
@@ -53,5 +48,7 @@ export default class MacthService {
     });
     console.log(result, 'log result-service');
     return result;
-  */
+
 }
+
+*/
