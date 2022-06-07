@@ -17,17 +17,16 @@ export default class PostMatchesController {
     const { homeTeam, awayTeam, homeTeamGoals,
       awayTeamGoals, inProgress } = req.body;
     try {
+      if (homeTeam === awayTeam) {
+        return res.status(401).json(message);
+      }
       const getHomeTeam = await Team.findByPk(Number(homeTeam));
       const getAwayTeam = await Team.findByPk(Number(awayTeam));
       if (!getHomeTeam || !getAwayTeam) return res.status(404).json(message2);
 
-      if (Number(homeTeam.length) === Number(awayTeam.length)) {
-        return res.status(401).json(message);
-      }
       const result = await this.postMatchesService.createMatch(
         { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, inProgress },
       );
-      // if (result === undefined) return res.status(404).json(message2);
       return res.status(201).json(result);
     } catch (e) {
       res.status(500).json({ message: 'internal server error' });
