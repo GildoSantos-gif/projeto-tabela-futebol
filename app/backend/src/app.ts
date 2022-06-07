@@ -21,8 +21,8 @@ class App {
     this.app.use('/login', loginRouter);
     this.app.use('/teams', teamRouter);
     this.app.use('/matches', matchRouter);
-    this.app.use('/matches', postMatchesRouter);
     this.app.use('/matches', postMatchesFinishRouter);
+    this.app.use('/matches', postMatchesRouter);
   }
 
   private config():void {

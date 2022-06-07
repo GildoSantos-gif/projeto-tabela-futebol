@@ -18,6 +18,12 @@ export default class PostMatchesService {
     */
 
     const result = await Match.create(data);
-    return result;
+    const { id } = result;
+    const retorno = {
+      id,
+      ...data,
+    };
+    console.log(retorno, 'retorno');
+    return retorno;
   };
 }
