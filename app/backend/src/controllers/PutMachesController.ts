@@ -3,7 +3,9 @@ import Match from '../database/models/MatchModel';
 
 export default class PutMatchesController {
   putMatch = async (req: Request, res: Response) => {
-    const { id, homeTeamGoals, awayTeamGoals } = req.params;
+    const { id } = req.params;
+    const { homeTeamGoals, awayTeamGoals } = req.body;
+
     try {
       Match.update({ homeTeamGoals, awayTeamGoals }, { where: { id } });
       return res.status(200).json();
