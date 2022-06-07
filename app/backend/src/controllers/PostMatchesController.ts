@@ -3,7 +3,7 @@ import PostMatchesService from '../services/PostMatchesService';
 import Team from '../database/models/TeamModel';
 
 const message = {
-  message: 'It is not possible to create a match with two equals teams',
+  message: 'It is not possible to create a match with two equal teams',
 };
 const message2 = { message: 'There is no team with such id!' };
 

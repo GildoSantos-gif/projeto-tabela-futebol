@@ -4,12 +4,14 @@ import PostMatchesController from '../controllers/PostMatchesController';
 import ValidToken from '../validatesAll/ValidToken';
 import PostMatchesFinishController
   from '../controllers/PostMatchesFinishController';
+import PutMatchesController from '../controllers/PutMachesController';
 
 const matchRouter = express.Router();
 const getController = new MatchesController();
 const postcontroller = new PostMatchesController();
 const validToken = new ValidToken();
 const finishedcontroller = new PostMatchesFinishController();
+const putMatches = new PutMatchesController();
 
 matchRouter.get('/', getController.getAll);
 matchRouter.post(
@@ -20,6 +22,10 @@ matchRouter.post(
 matchRouter.patch(
   '/:id/finish',
   finishedcontroller.createMatch,
+);
+matchRouter.patch(
+  '/:id',
+  putMatches.putMatch,
 );
 
 export default matchRouter;
