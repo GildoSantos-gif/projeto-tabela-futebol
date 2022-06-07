@@ -21,7 +21,7 @@ export default class PostMatchesController {
       const getAwayTeam = await Team.findByPk(Number(awayTeam));
       if (!getHomeTeam || !getAwayTeam) return res.status(404).json(message2);
 
-      if (Number(homeTeam) === Number(awayTeam)) {
+      if (Number(homeTeam.length) === Number(awayTeam.lenght)) {
         return res.status(401).json(message);
       }
       const result = await this.postMatchesService.createMatch(
