@@ -4,7 +4,7 @@ import PostMatchesController from '../controllers/PostMatchesController';
 import ValidToken from '../validatesAll/ValidToken';
 import PostMatchesFinishController
   from '../controllers/PostMatchesFinishController';
-import PutMatchesController from '../controllers/PutMachesController';
+import PutMatchesController from '../controllers/PutMatchesController';
 
 const matchRouter = express.Router();
 const getController = new MatchesController();

@@ -7,7 +7,7 @@ export default class PutMatchesController {
     const { homeTeamGoals, awayTeamGoals } = req.body;
 
     try {
-      Match.update({ homeTeamGoals, awayTeamGoals }, { where: { id: Number(id) } });
+      Match.update({ homeTeamGoals, awayTeamGoals }, { where: { id: +id } });
       return res.status(200).json();
     } catch (e) {
       res.status(500).json({ message: 'internal server error' });
