@@ -1,3 +1,4 @@
+/*
 import * as sinon from 'sinon';
 import * as chai from 'chai';
 // @ts-ignore
@@ -39,7 +40,7 @@ describe('Seu teste', () => {
   //   expect(...)
   // });
 
-  it('Seu sub-teste', () => {
-    expect(false).to.be.eq(true);
-  });
-});
+//  it('Seu sub-teste', () => {
+//    expect(false).to.be.eq(true);
+//  });
+// });
