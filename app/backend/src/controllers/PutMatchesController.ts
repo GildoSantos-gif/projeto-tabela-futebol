@@ -1,14 +1,19 @@
 import { Request, Response } from 'express';
-import Match from '../database/models/MatchModel';
+import PutMatchesService from '../services/PutMatchesService';
 
 export default class PutMatchesController {
+  putMatchesService: PutMatchesService;
+  constructor() {
+    this.putMatchesService = new PutMatchesService();
+  }
+
   putMatch = async (req: Request, res: Response) => {
     const { id } = req.params;
     const { homeTeamGoals, awayTeamGoals } = req.body;
 
     try {
-      Match.update({ homeTeamGoals, awayTeamGoals }, { where: { id: +id } });
-      return res.status(200).json();
+      await this.putMatchesService.putMatch(Number(id), homeTeamGoals, awayTeamGoals);
+      return res.status(200).json({ message: 'match edited' });
     } catch (e) {
       res.status(500).json({ message: 'internal server error' });
     }
