@@ -1,10 +1,11 @@
+/*
 import * as sinon from 'sinon';
 import * as chai from 'chai';
 // @ts-ignore
 import chaiHttp = require('chai-http');
 
 import { app } from '../app';
-import User from '../database/models/UserModel';
+import Match from '../database/models/MatchModel';
 
 import { Response } from 'superagent';
 
@@ -13,31 +14,28 @@ chai.use(chaiHttp);
 const { expect } = chai;
 
 /*
-const userLogin = {
-  id: 1,
-  username: 'admin',
-  role: 'admin',
-  email: 'admin',
-  password: '$2a$08$xi.Hxk1czAO0nZR..B393u10aED0RQ1N3PAEXQ7HxtLjKPEZBu.PW',  
-};
+const match = {
+  id: number;
+  homeTeam: number;
+  homeTeamGoals: number;
+  awayTeams: number;
+  awayTeamsGoal: number;
+  inProgress: boolean;
+}
 */
+/*
 
-
-describe('Login', () => {
+describe('Matches', () => {
   let chaiHttpResponse: Response;
 
     beforeEach(async () => {
-      sinon.stub(User, "findOne")
+      sinon.stub(Match, "findOne")
       .resolves(
-        { id: 1,
-          username: 'admin',
-          role: 'admin',
-          email: 'admin',
-          password: '$2a$08$xi.Hxk1czAO0nZR..B393u10aED0RQ1N3PAEXQ7HxtLjKPEZBu.PW' } as User);
+        {  } as Match);
  });
 
-    afterEach(()=> {
-      (User.findOne as sinon.SinonStub).restore();
+    afterEach(()=>{
+      (Match.findOne as sinon.SinonStub).restore();
   })
 
    it('a requisição deve responder com status 200', async () => {
@@ -83,10 +81,13 @@ describe('Login', () => {
      chaiHttpResponse = await chai
       .request(app)
       .post('/login')
-      .send({ email: 'admin-Aroba-admin-Ponto-com', password: 'senha invalida' })
+      .send({ email: 'admin-Aroba-admin-Ponto-com', 
+      password: 'senha invalida' })
 
      expect(chaiHttpResponse.status).to.be.equal(401);
      
     });
 
 });
+
+*/
