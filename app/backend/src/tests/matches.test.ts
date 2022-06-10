@@ -142,3 +142,34 @@ describe('route, post /matches:id/finish', () => {
 
    });
 });
+
+describe('route, post /matches:id', () => {
+  let chaiHttpResponse: Response;
+
+    beforeEach(() => {
+      sinon.stub(Match, 'update')
+      .resolves(
+        posMatch as any);
+ });
+
+    afterEach(()=>{
+      (Match.update as sinon.SinonStub).restore();
+  });
+
+   it('a requisição deve responder com status 200 e obj. match', async () => {
+    chaiHttpResponse = await chai
+      .request(app)
+      .patch('/matches/1')
+      .send({})
+
+     expect(chaiHttpResponse.status).to.be.equal(200);
+     // expect(chaiHttpResponse.body).to.have.property('id');
+     // expect(chaiHttpResponse.body).to.be.equal({ message: 'Finish' });
+     // expect(chaiHttpResponse).to.have.property('token');
+     // expect(chaiHttpResponse.body).to.have.property('id');
+     // expect(chaiHttpResponse.body.user).to.have.property('username');
+     // expect(chaiHttpResponse).to.have.property('role');
+     // expect(chaiHttpResponse).to.have.property('email');
+
+   });
+});
