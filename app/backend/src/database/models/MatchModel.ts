@@ -11,7 +11,7 @@ class Match extends Model {
 
   public awayTeams: number;
 
-  public awayTeamsGoal: number;
+  public awayTeamGoals: number;
 
   public inProgress: boolean;
 }

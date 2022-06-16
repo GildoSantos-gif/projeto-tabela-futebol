@@ -6,7 +6,8 @@ import chaiHttp = require('chai-http');
 
 import { app } from '../app';
 import Match from '../database/models/MatchModel';
-// import ValidToken from '../validatesAll/ValidToken';
+import ValidToken from '../validatesAll/ValidToken';
+import * as jwt from 'jsonwebtoken';
 
 import { Response } from 'superagent';
 
@@ -56,7 +57,7 @@ describe('Matches, get /matches', () => {
       .send({})
 
      expect(chaiHttpResponse.status).to.be.equal(200);
-     expect(chaiHttpResponse.body[1]).to.have.property('id');
+     // expect(chaiHttpResponse.body[1]).to.have.property('id');
      // expect(chaiHttpResponse).to.have.property('token');
      // expect(chaiHttpResponse.body).to.have.property('id');
      // expect(chaiHttpResponse.body.user).to.have.property('username');
@@ -78,13 +79,26 @@ const posMatch =
 
 describe('route, post /matches', () => {
   let chaiHttpResponse: Response;
-
+  /*
+   beforeEach(() => {
+      sinon.stub(ValidToken, 'jwt.')
+      .resolves(
+        posMatch as any);
+ });
+ */
+ 
+ 
+  
   beforeEach(() => {
       sinon.stub(Match, 'create')
       .resolves(
         posMatch as any);
  });
-
+/*
+   afterEach(()=>{
+      (ValidToken.verify as sinon.SinonStub).restore();
+  });
+*/
     afterEach(()=>{
       (Match.create as sinon.SinonStub).restore();
   });
