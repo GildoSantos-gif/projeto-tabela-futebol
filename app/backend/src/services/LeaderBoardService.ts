@@ -40,9 +40,9 @@ export default class LeaderboardService {
       totalPoints: Number(totalPoints),
       totalGames: Number(matches.length),
       totalVictories: Number(totalVictories),
-      totaldraws: Number(totaldraws),
+      totalDraws: Number(totaldraws),
       totalLosses: Number(totalLosses),
-      goalsfavor: Number(goalsfavor),
+      goalsFavor: Number(goalsfavor),
       goalsOwn: Number(goalsOwn),
       goalsBalance: Number(goalsfavor) - Number(goalsOwn),
       efficiency: Number(efficiency.toFixed(2)),
@@ -72,7 +72,7 @@ export default class LeaderboardService {
     const resultt = result.sort((a, b) => b.totalPoints - a.totalPoints
     || b.totalVictories - a.totalVictories
     || b.goalsBalance - a.goalsBalance
-    || b.goalsfavor - a.goalsfavor
+    || b.goalsFavor - a.goalsFavor
     || a.goalsOwn - b.goalsOwn);
     console.log(resultt, 'resultt');
     return resultt;
