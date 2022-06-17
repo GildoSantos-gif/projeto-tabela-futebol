@@ -31,20 +31,20 @@ export default class LeaderboardService {
   static table(matches: Match[]) {
     const totalVictories = this.sumTotalVictories(matches);
     const totalLosses = this.sumTotalLosses(matches);
-    const totaldraws = this.sumTotalDraws(matches);
-    const goalsfavor = this.sumTotalGoalsPro(matches);
+    const totalDraws = this.sumTotalDraws(matches);
+    const goalsFavor = this.sumTotalGoalsPro(matches);
     const goalsOwn = this.sumTotalGoalsOwn(matches);
-    const totalPoints = (Number(totalVictories) * 3) + Number(totaldraws);
+    const totalPoints = (Number(totalVictories) * 3) + Number(totalDraws);
     const efficiency = (Number(totalPoints) / (matches.length * 3)) * 100;
     return {
       totalPoints: Number(totalPoints),
       totalGames: Number(matches.length),
       totalVictories: Number(totalVictories),
-      totalDraws: Number(totaldraws),
+      totalDraws: Number(totalDraws),
       totalLosses: Number(totalLosses),
-      goalsFavor: Number(goalsfavor),
+      goalsFavor: Number(goalsFavor),
       goalsOwn: Number(goalsOwn),
-      goalsBalance: Number(goalsfavor) - Number(goalsOwn),
+      goalsBalance: Number(goalsFavor) - Number(goalsOwn),
       efficiency: Number(efficiency.toFixed(2)),
     };
   }
