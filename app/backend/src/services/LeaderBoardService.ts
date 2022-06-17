@@ -66,4 +66,17 @@ export default class LeaderboardService {
     }));
     return mapTeamsResult;
   };
+
+  orderGetClassificationHomeTeam = async () => {
+    const result = await this.getClassificationHomeTeam();
+    const resultt = result.sort((a, b) => b.totalPoints - a.totalPoints
+    || b.totalVictories - a.totalVictories
+    || b.goalsBalance - a.goalsBalance
+    || b.goalsfavor - a.goalsfavor
+    || a.goalsOwn - b.goalsOwn);
+    return {
+      name: resultt[0],
+      ...result,
+    };
+  };
 }

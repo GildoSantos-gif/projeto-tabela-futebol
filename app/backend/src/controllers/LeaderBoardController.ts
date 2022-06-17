@@ -11,7 +11,7 @@ export default class LoaderBoardController {
   public getTable = async (req: Request, res: Response) => {
     try {
       const getClassificationHomeTeam = await
-      this.leaderBoardService.getClassificationHomeTeam();
+      this.leaderBoardService.orderGetClassificationHomeTeam();
       console.log(getClassificationHomeTeam, 'log controller');
       return res.status(200).json(getClassificationHomeTeam);
     } catch (err) {
