@@ -74,9 +74,7 @@ export default class LeaderboardService {
     || b.goalsBalance - a.goalsBalance
     || b.goalsfavor - a.goalsfavor
     || a.goalsOwn - b.goalsOwn);
-    return {
-      name: resultt[0],
-      ...result,
-    };
+    console.log(resultt, 'resultt');
+    return resultt;
   };
 }
