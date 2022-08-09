@@ -28,6 +28,9 @@ export default class LeaderboardService {
   static sumTotalGoalsOwn = (matches: Match[]) =>
     matches.reduce((acc, curr) => (curr.awayTeamGoals + acc), 0);
 
+  static sumTotalGoalsPoints = (matches: Match[]) =>
+    matches.reduce((acc, curr) => (curr.awayTeamGoals + acc), 0);
+
   static table(matches: Match[]) {
     const totalVictories = this.sumTotalVictories(matches);
     const totalLosses = this.sumTotalLosses(matches);
@@ -37,7 +40,7 @@ export default class LeaderboardService {
     const totalPoints = (Number(totalVictories) * 3) + Number(totalDraws);
     const efficiency = (Number(totalPoints) / (matches.length * 3)) * 100;
     return {
-      totalPoints: Number(totalPoints),
+      totalPoints,
       totalGames: Number(matches.length),
       totalVictories: Number(totalVictories),
       totalDraws: Number(totalDraws),
@@ -56,8 +59,6 @@ export default class LeaderboardService {
       const matchesResult = await
       this.match.findAll({ where: { homeTeam: id, inProgress: false } });
       const resultTable = LeaderboardService.table(matchesResult);
-      console.log(mapTeamsResult, 'map-teams-result');
-      console.log(mapTeamsResult, 'matches-result');
       console.log(resultTable, ' log-result-table');
       return {
         name: teamName,
