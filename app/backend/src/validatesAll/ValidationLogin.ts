@@ -15,7 +15,7 @@ export default class ValidationLogin {
     console.log(getUserByEmail, 'getUserByEmail log');
 
     if (!getUserByEmail?.email) {
-      // throw Error('Incorrect email or password');
+    
       return res.status(401).json(message);
     }
     if (password.length < 6) {
